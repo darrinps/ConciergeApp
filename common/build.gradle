@@ -1,0 +1,53 @@
+import static com.aa.build.gradle.BuildConfig.*
+
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion Math.max(WEAR_COMPILE_SDK_VERSION, APP_COMPILE_SDK_VERSION)
+    buildToolsVersion BUILD_TOOLS_VERSION
+    publishNonDefault true
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    defaultConfig {
+        applicationId "com.aa.consierge.common"
+        versionCode 1
+        versionName '1.0'
+        minSdkVersion Math.min(WEAR_MIN_SDK_VERSION, APP_MIN_SDK_VERSION)
+        targetSdkVersion Math.max(WEAR_TARGET_SDK_VERSION, APP_TARGET_SDK_VERSION)
+    }
+
+    buildTypes {
+        debug {
+        }
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+configurations {
+    // The provided configuration allows us to compile with, but not include the binary in the aar
+    provided
+}
+
+android.libraryVariants.all {
+    variant -> variant.javaCompile.classpath += configurations.provided
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Maven dependencies
+
+    // Android/Google dependendies
+    // TODO: this could cause problems if wear and app google API's differ
+    // So far this isn't the case. If it ever becomes an issue, then we'll need to adjust
+    provided "com.google.android.gms:play-services-wearable:${WEAR_GOOGLE_PLAY_SERVICES_VERSION}"
+    provided "com.android.support:support-annotations:${WEAR_ANDROID_SUPPORT_VERSION}"
+}

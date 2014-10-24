@@ -1,0 +1,18 @@
+import static com.aa.build.gradle.PluginVersion.ANDROID_PLUGIN_VERSION
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${ANDROID_PLUGIN_VERSION}"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}

@@ -1,0 +1,57 @@
+//noinspection GradleImproperProjectLevelStatement
+repositories {
+    jcenter()
+}
+
+//noinspection GradleImproperProjectLevelStatement
+dependencies {
+    compile "com.android.tools.build:gradle:${androidPluginVersion}"
+}
+
+def writeFile(String dir, String name, String contents = "") {
+    def file = new File(dir, name)
+    if (!file.exists()) {
+        def _dir = new File(dir)
+        _dir.mkdirs()
+        file = new File(_dir, name)
+    }
+    FileWriter writer = new FileWriter(file)
+    writer.write(contents)
+    writer.flush()
+    writer.close()
+    return file
+}
+
+final String BUILD_CONFIG = "" +
+        "/**\n" +
+        " * PluginVersion.java\n" +
+        " *\n" +
+        " * Auto-Generated file!\n" +
+        " * Do not modify!\n" +
+        " *\n" +
+        " * If you do need to modify the values in this file, update the buildSrc/gradle.properties file.\n" +
+        " */\n" +
+        "\n" +
+        "package com.aa.build.gradle\n" +
+        "\n" +
+        "public final class PluginVersion {\n" +
+        "\n" +
+        "    /** Android-Gradle Plugin Version currently used to build */\n" +
+        "    public static final String ANDROID_PLUGIN_VERSION = '${androidPluginVersion}'\n" +
+        "\n" +
+        "    private PluginVersion() {}\n" +
+        "}\n"
+
+def String outputFile = "PluginVersion.groovy"
+def String outputDir = "${projectDir}/src/main/groovy/com/aa/build/gradle"
+task buildConfig {
+    ext.contents = BUILD_CONFIG
+    ext.destFile = new File(outputDir, outputFile)
+    inputs.property("contents", contents)
+    outputs.file destFile
+    doLast {
+        println "Writing plugin version source file."
+        writeFile(outputDir, outputFile, (String) contents)
+    }
+}
+compileGroovy.dependsOn(buildConfig)
