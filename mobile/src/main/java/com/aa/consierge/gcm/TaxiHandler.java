@@ -1,13 +1,20 @@
-package com.aa.consierge;
+package com.aa.consierge.gcm;
 
 import android.app.Service;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
+import com.aa.consierge.NotificationUtils;
+import com.aa.consierge.R;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Created by layne on 10/25/14.
  */
-public class QuestionHandler implements GcmMessageHandler {
+public class TaxiHandler implements GcmMessageHandler {
+    private static final AtomicInteger sCount = new AtomicInteger();
+
     @Override
     public boolean canHandleType(GcmMessageType type) {
         return true;
@@ -21,14 +28,27 @@ public class QuestionHandler implements GcmMessageHandler {
             String contentMessage,
             String contentJson) {
 
-        NotificationCompat.WearableExtender extender = NotificationUtils.defaultExtender(service, R.drawable.taxi);
+        int drawable = R.drawable.taxi;
+        switch (type) {
+            case TAXI:
+                break;
+            case TSA:
+                break;
+            case ADM:
+                break;
+            case DRINK:
+                drawable = R.drawable.titos_vodka;
+                break;
+        }
+        NotificationCompat.WearableExtender extender = NotificationUtils.defaultExtender(service, drawable);
 
         NotificationCompat.Builder builder = NotificationUtils.defaultBuilder(service)
                 .setContentText(contentMessage)
                 .extend(extender);
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(service);
-        manager.notify(1, builder.build());
+        manager.notify(sCount.incrementAndGet(), builder.build());
+
         return true;
     }
 }

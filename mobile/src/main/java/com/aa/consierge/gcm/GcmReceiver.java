@@ -1,4 +1,4 @@
-package com.aa.consierge;
+package com.aa.consierge.gcm;
 
 import android.app.Activity;
 import android.content.ComponentName;

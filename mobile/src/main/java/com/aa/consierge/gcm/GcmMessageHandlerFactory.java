@@ -6,7 +6,7 @@
  * Copyright (c) 2014 American Airlines. All rights reserved.
  */
 
-package com.aa.consierge;
+package com.aa.consierge.gcm;
 
 import android.app.Service;
 import android.os.Bundle;
@@ -22,15 +22,15 @@ public class GcmMessageHandlerFactory {
 
     public static final String EXTRA_COLLAPSE_KEY = "collapse_key";
     public static final String EXTRA_FROM = "from";
-    public static final String EXTRA_NOTIFICATION_TYPE = "notificationtype";
-    public static final String EXTRA_CONTENT = "com.xtify.sdk.NOTIFICATION_CONTENT";
+    public static final String EXTRA_NOTIFICATION_TYPE = "com.xtify.sdk.NOTIFICATION_CONTENT";
+    public static final String EXTRA_CONTENT = "com.xtify.sdk.NOTIF_ACTION_DATA";
     public static final String EXTRA_CONTENT_JSON = "content";
 
     private final List<GcmMessageHandler> handlers;
 
     public static GcmMessageHandlerFactory getDefault() {
         List<GcmMessageHandler> handlers = new ArrayList<>();
-        handlers.add(new QuestionHandler());
+        handlers.add(new TaxiHandler());
         return new GcmMessageHandlerFactory(handlers);
     }
 
