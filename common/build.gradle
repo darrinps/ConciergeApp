@@ -44,6 +44,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // Maven dependencies
+    compile "de.greenrobot:eventbus:2.2.1"
 
     // Android/Google dependendies
     // TODO: this could cause problems if wear and app google API's differ

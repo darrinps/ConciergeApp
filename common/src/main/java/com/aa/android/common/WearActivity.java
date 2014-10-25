@@ -11,6 +11,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Node;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * This class provides the basic boilerplate code for a Wear Activity that can communicate with the main app.
  */
@@ -33,12 +35,14 @@ public abstract class WearActivity extends Activity implements WearHandler {
         super.onStart();
         mWearManager.registerHandler(this);
         mWearManager.start();
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onStop() {
         mWearManager.unregisterHandler(this);
         mWearManager.stop();
+        EventBus.getDefault().unregister(this);
         super.onStop();
     }
 
@@ -102,4 +106,10 @@ public abstract class WearActivity extends Activity implements WearHandler {
     public GoogleApiClient getApiClient() {
         return mWearManager.getApiClient();
     }
+
+    public void onEventMainThread(DummyEvent event) {
+        // dummy
+    }
+
+    public static final class DummyEvent { }
 }
