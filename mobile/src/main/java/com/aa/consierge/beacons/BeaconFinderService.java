@@ -17,6 +17,7 @@ import com.aa.consierge.R;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconManager;
+import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.startup.BootstrapNotifier;
@@ -54,7 +55,12 @@ public class BeaconFinderService extends Service implements BootstrapNotifier, R
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        verifyBluetooth();
+        if(verifyBluetooth())
+        {
+           // BeaconManager.getBeaconParsers().add(new BeaconParser()
+           //         .setBeaconLayout("m:2-3:beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+        }
+
         return START_NOT_STICKY;
     }
 
@@ -97,19 +103,29 @@ public class BeaconFinderService extends Service implements BootstrapNotifier, R
 
 
 
-    private void verifyBluetooth()
+    private boolean verifyBluetooth()
     {
 
         try
         {
-            if (!BeaconManager.getInstanceForApplication(this).checkAvailability())
+            if (BeaconManager.getInstanceForApplication(this).checkAvailability())
+            {
+                Toast.makeText(getApplicationContext(), "iBeacon detection enabled", Toast.LENGTH_LONG).show();
+
+                return true;
+            }
+            else
             {
                 Toast.makeText(getApplicationContext(), "Enable BLE and restart", Toast.LENGTH_LONG).show();
+
+                return false;
             }
         }
         catch (RuntimeException e)
         {
             Toast.makeText(getApplicationContext(), "BLE is not supported on this device", Toast.LENGTH_LONG).show();
+
+            return false;
         }
 
     }
