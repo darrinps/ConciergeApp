@@ -51,44 +51,45 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-        mQuestion = (EditText) rootView.findViewById(R.id.question);
-        mSubmit = (Button) rootView.findViewById(R.id.submit);
-        mAnswer = (TextView) rootView.findViewById(R.id.answer);
-
-        mSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "sending...", Toast.LENGTH_SHORT).show();
-
-                WatsonFragment fragment = new WatsonFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                fragment.show(ft, "Watson");
-                
-                sendQuestion(new WeakReference<>(MainFragment.this), mQuestion.getText().toString());
-            }
-        });
-
-        return rootView;
+        return inflater.inflate(R.layout.concierge_home, container, false);
     }
 
-    private static void sendQuestion(final WeakReference<MainFragment> fragmentRef, String question) {
-        WearActivity wearActivity = fragmentRef.get().mActivity;
-        if (wearActivity != null) {
-            SharedQuestion sharedQuestion = new SharedQuestion(question, null, null);
-            wearActivity.getWearManager()
-                    .putDataItem(sharedQuestion.asPutDataRequest())
-                    .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
-                        @Override
-                        public void onResult(DataApi.DataItemResult dataItemResult) {
-                            MainFragment fragment = fragmentRef.get();
-                            WearActivity activity;
-                            if (fragment != null && (activity = fragment.mActivity) != null) {
-                                Toast.makeText(activity, "success", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
-    }
+//        mQuestion = (EditText) rootView.findViewById(R.id.question);
+//        mSubmit = (Button) rootView.findViewById(R.id.submit);
+//        mAnswer = (TextView) rootView.findViewById(R.id.answer);
+//
+//        mSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "sending...", Toast.LENGTH_SHORT).show();
+//
+//                WatsonFragment fragment = new WatsonFragment();
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                fragment.show(ft, "Watson");
+//
+//                sendQuestion(new WeakReference<>(MainFragment.this), mQuestion.getText().toString());
+//            }
+//        });
+//
+//        return rootView;
+//    }
+//
+//    private static void sendQuestion(final WeakReference<MainFragment> fragmentRef, String question) {
+//        WearActivity wearActivity = fragmentRef.get().mActivity;
+//        if (wearActivity != null) {
+//            SharedQuestion sharedQuestion = new SharedQuestion(question, null, null);
+//            wearActivity.getWearManager()
+//                    .putDataItem(sharedQuestion.asPutDataRequest())
+//                    .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
+//                        @Override
+//                        public void onResult(DataApi.DataItemResult dataItemResult) {
+//                            MainFragment fragment = fragmentRef.get();
+//                            WearActivity activity;
+//                            if (fragment != null && (activity = fragment.mActivity) != null) {
+//                                Toast.makeText(activity, "success", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//        }
+//    }
 }
