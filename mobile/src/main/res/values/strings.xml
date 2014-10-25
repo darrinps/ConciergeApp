@@ -5,6 +5,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="watson_to_do_response">Rainbow Ryders Hot Air Balloon Rides, 5601 Eagle Rock Ave NE, toll&#8211;free: +1&#8211;877&#8211;771&#8211;0776. Scenic hot air balloon rides daily in Phoenix and Scottsdale.</string>
+    <string name="watson_to_do_response">Rainbow Ryders Hot Air Balloon Rides offers scenic balloon rides in Phoenix. Would you like to schedule a ride tomorrow at 3:15?</string>
 
 </resources>
