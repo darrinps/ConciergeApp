@@ -33,6 +33,7 @@ public class TaxiHandler implements GcmMessageHandler {
             case TAXI:
                 break;
             case TSA:
+                drawable = R.drawable.tsa_precheck;
                 break;
             case ADM:
                 break;
