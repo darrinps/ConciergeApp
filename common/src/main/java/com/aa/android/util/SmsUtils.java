@@ -12,7 +12,7 @@ public class SmsUtils
 {
     private static final String TAG = SmsUtils.class.getName();
 
-    protected void sendSMSMessage(final String phoneNo, final String message, Context optCtx)
+    public void sendSMSMessage(final String phoneNo, final String message, Context optCtx)
     {
         Log.i(TAG, "Sending SMS");
 
