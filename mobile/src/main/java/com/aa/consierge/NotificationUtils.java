@@ -11,6 +11,7 @@ package com.aa.consierge;
 import android.app.Notification;
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -32,11 +33,9 @@ public final class NotificationUtils {
                 .setDefaults(Notification.DEFAULT_ALL);
     }
 
-    public static NotificationCompat.WearableExtender defaultExtender(Context context) {
-        return new NotificationCompat.WearableExtender();
-        // TODO: add a background for notifications
-//                .setBackground(BitmapFactory.decodeResource(context.getResources(), R.drawable.bg_wearable_main));
-
+    public static NotificationCompat.WearableExtender defaultExtender(Context context, @DrawableRes int drawableId) {
+        return new NotificationCompat.WearableExtender()
+                .setBackground(BitmapFactory.decodeResource(context.getResources(), drawableId));
     }
 
     public static void notify(Context context, String title, String content) {

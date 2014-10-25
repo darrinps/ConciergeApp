@@ -21,9 +21,11 @@ public class QuestionHandler implements GcmMessageHandler {
             String contentMessage,
             String contentJson) {
 
-        NotificationCompat.Builder builder = NotificationUtils.defaultBuilder(service)
-                .setContentText(contentMessage);
+        NotificationCompat.WearableExtender extender = NotificationUtils.defaultExtender(service, R.drawable.taxi);
 
+        NotificationCompat.Builder builder = NotificationUtils.defaultBuilder(service)
+                .setContentText(contentMessage)
+                .extend(extender);
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(service);
         manager.notify(1, builder.build());
