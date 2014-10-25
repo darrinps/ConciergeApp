@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.aa.android.common.WearActivity;
 import com.aa.android.common.data.SharedDataEvent;
+import com.aa.android.common.events.Events;
 import com.aa.android.util.DebugLog;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageEvent;
@@ -23,12 +24,8 @@ public class BaseActivity extends WearActivity {
         return false;
     }
 
-    public void onEventMainThread(PreferencesEvent event) {
+    public void onEventMainThread(Events.PreferencesEvent event) {
         DebugLog.d("PREFERENCES", "");
-        startActivity(new Intent(this, PreferencesEvent.class));
-    }
-
-    public static class PreferencesEvent {
-
+        startActivity(new Intent(this, PreferencesActivity.class));
     }
 }

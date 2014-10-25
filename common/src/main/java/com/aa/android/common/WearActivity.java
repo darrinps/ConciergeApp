@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.aa.android.common.events.Events;
 import com.aa.android.util.DebugLog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -107,9 +108,7 @@ public abstract class WearActivity extends Activity implements WearHandler {
         return mWearManager.getApiClient();
     }
 
-    public void onEventMainThread(DummyEvent event) {
+    public void onEventMainThread(Events.DummyEvent event) {
         // dummy
     }
-
-    public static final class DummyEvent { }
 }
