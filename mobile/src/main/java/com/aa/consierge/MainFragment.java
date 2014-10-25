@@ -2,6 +2,7 @@ package com.aa.consierge;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,6 @@ import com.google.android.gms.wearable.DataApi;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by layne on 10/24/14.
- */
 public class MainFragment extends Fragment {
     private static final String TAG = MainFragment.class.getSimpleName();
 
@@ -63,6 +61,11 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "sending...", Toast.LENGTH_SHORT).show();
+
+                WatsonFragment fragment = new WatsonFragment();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                fragment.show(ft, "Watson");
+                
                 sendQuestion(new WeakReference<>(MainFragment.this), mQuestion.getText().toString());
             }
         });
