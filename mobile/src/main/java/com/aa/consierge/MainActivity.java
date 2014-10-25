@@ -1,22 +1,42 @@
 package com.aa.consierge;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.aa.android.util.ContactHolder;
+import com.aa.android.util.SmsUtils;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends Activity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
+
+        if (savedInstanceState == null)
+        {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new MainFragment())
                     .commit();
         }
+
+        //Generate some fake data
+        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.phil_easter);
+
+        ContactHolder holder = new ContactHolder("Phil Easter", "9403956423", bm);
+        SmsUtils.addContact(holder);
+
+        bm = BitmapFactory.decodeResource(getResources(), R.drawable.limo);
+
+        holder = new ContactHolder("Big Als Limo", "2145977609", bm);
+        SmsUtils.addContact(holder);
     }
 
 
