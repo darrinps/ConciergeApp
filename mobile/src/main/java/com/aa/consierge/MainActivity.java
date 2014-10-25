@@ -1,12 +1,16 @@
 package com.aa.consierge;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aa.android.common.WearActivity;
 import com.aa.android.common.data.SharedDataEvent;
+import com.aa.android.util.ContactHolder;
+import com.aa.android.util.SmsUtils;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageEvent;
 
@@ -17,11 +21,26 @@ public class MainActivity extends WearActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
+
+        if (savedInstanceState == null)
+        {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new MainFragment())
                     .commit();
         }
+
+        //Generate some fake data
+        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.phil_easter);
+
+        ContactHolder holder = new ContactHolder("Phil Easter", "9403956423", bm);
+        SmsUtils.addContact(holder);
+
+        bm = BitmapFactory.decodeResource(getResources(), R.drawable.limo);
+
+        holder = new ContactHolder("Big Als Limo", "2145977609", bm);
+        SmsUtils.addContact(holder);
+
+        SmsUtils.sendSMSMessage(holder.getNumber(), "TEST", getApplicationContext());
     }
 
     @Override
