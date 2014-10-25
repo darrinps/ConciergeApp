@@ -24,7 +24,7 @@ public class QuestionHandler extends SimpleWearHandler {
         String path = dataEvent.getPath();
         DebugLog.d("question", "path: %s", path);
         if (path != null && path.startsWith(SharedQuestion.PUT_PATH_PREFIX)) {
-            SharedQuestion question = dataEvent.getSharedData(SharedQuestion.class);
+            SharedQuestion question = dataEvent.getSharedData(client, SharedQuestion.class);
             MainActivity.start(context, question);
             return true;
         } else {

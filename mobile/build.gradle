@@ -34,6 +34,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':common')
+    compile "com.android.support:support-v13:${APP_ANDROID_SUPPORT_VERSION}"
     compile "com.google.android.gms:play-services:${APP_GOOGLE_PLAY_SERVICES_VERSION}"
 }
 

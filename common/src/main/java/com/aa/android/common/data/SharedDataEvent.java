@@ -2,6 +2,7 @@ package com.aa.android.common.data;
 
 import android.net.Uri;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataItem;
 import com.google.android.gms.wearable.DataMapItem;
@@ -11,12 +12,10 @@ import com.google.android.gms.wearable.DataMapItem;
  * <p/>
  * Created by layne on 10/16/14.
  */
-public class SharedDataEvent
-{
+public class SharedDataEvent {
     private final DataEvent mDataEvent;
 
-    private SharedDataEvent(DataEvent dataEvent)
-    {
+    private SharedDataEvent(DataEvent dataEvent) {
         this.mDataEvent = dataEvent;
     }
 
@@ -31,10 +30,8 @@ public class SharedDataEvent
      * @throws IllegalArgumentException
      *         if the {@code dataEvent} is null.
      */
-    public static SharedDataEvent from(DataEvent dataEvent)
-    {
-        if (dataEvent == null)
-        {
+    public static SharedDataEvent from(DataEvent dataEvent) {
+        if (dataEvent == null) {
             throw new IllegalArgumentException("The data event must not be null");
         }
         return new SharedDataEvent(dataEvent);
@@ -45,8 +42,7 @@ public class SharedDataEvent
      *
      * @return the data event type
      */
-    public int getType()
-    {
+    public int getType() {
         return mDataEvent.getType();
     }
 
@@ -55,8 +51,7 @@ public class SharedDataEvent
      *
      * @return the data item
      */
-    public DataItem getDataItem()
-    {
+    public DataItem getDataItem() {
         return mDataEvent.getDataItem();
     }
 
@@ -65,8 +60,7 @@ public class SharedDataEvent
      *
      * @return the data map item
      */
-    public DataMapItem getDataMapItem()
-    {
+    public DataMapItem getDataMapItem() {
         return DataMapItem.fromDataItem(getDataItem());
     }
 
@@ -75,8 +69,7 @@ public class SharedDataEvent
      *
      * @return the uri of the data item
      */
-    public Uri getUri()
-    {
+    public Uri getUri() {
         return getDataItem().getUri();
     }
 
@@ -85,8 +78,7 @@ public class SharedDataEvent
      *
      * @return the path of the uri
      */
-    public String getPath()
-    {
+    public String getPath() {
         return getUri().getPath();
     }
 
@@ -101,14 +93,12 @@ public class SharedDataEvent
      *
      * @return the shared data item
      */
-    public <T extends SharedData> T getSharedData(Class<T> clazz)
-    {
-        return SharedData.fromDataItem(clazz, getDataItem());
+    public <T extends SharedData> T getSharedData(GoogleApiClient client, Class<T> clazz) {
+        return SharedData.fromDataItem(client, clazz, getDataItem());
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof SharedDataEvent)) return false;
 
@@ -120,16 +110,14 @@ public class SharedDataEvent
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return mDataEvent.hashCode();
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "SharedDataEvent{" +
-               "mDataEvent=" + mDataEvent +
-               '}';
+                "mDataEvent=" + mDataEvent +
+                '}';
     }
 }

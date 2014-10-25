@@ -73,7 +73,7 @@ public class MainFragment extends Fragment {
     private static void sendQuestion(final WeakReference<MainFragment> fragmentRef, String question) {
         WearActivity wearActivity = fragmentRef.get().mActivity;
         if (wearActivity != null) {
-            SharedQuestion sharedQuestion = new SharedQuestion(question, null);
+            SharedQuestion sharedQuestion = new SharedQuestion(question, null, null);
             wearActivity.getWearManager()
                     .putDataItem(sharedQuestion.asPutDataRequest())
                     .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
