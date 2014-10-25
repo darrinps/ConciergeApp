@@ -36,6 +36,7 @@ public class TaxiHandler implements GcmMessageHandler {
                 drawable = R.drawable.tsa_precheck;
                 break;
             case ADM:
+                drawable = R.drawable.admiralsclub;
                 break;
             case DRINK:
                 drawable = R.drawable.titos_vodka;
