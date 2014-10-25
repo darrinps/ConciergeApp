@@ -1,6 +1,7 @@
 package com.aa.consierge;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 
 import com.aa.android.util.ContactHolder;
 import com.aa.android.util.SmsUtils;
+import com.aa.consierge.beacons.BeaconFinderService;
 
 
 public class MainActivity extends Activity
@@ -38,7 +40,9 @@ public class MainActivity extends Activity
         holder = new ContactHolder("Big Als Limo", "2145977609", bm);
         SmsUtils.addContact(holder);
 
-        SmsUtils.sendSMSMessage(holder.getNumber(), "TEST", getApplicationContext());
+        //SmsUtils.sendSMSMessage(holder.getNumber(), "TEST", getApplicationContext());
+
+        startService(new Intent(this, BeaconFinderService.class));
     }
 
 

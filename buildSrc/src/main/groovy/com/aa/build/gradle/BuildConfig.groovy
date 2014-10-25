@@ -19,7 +19,7 @@ public final class BuildConfig {
     public static final String APP_GOOGLE_PLAY_SERVICES_VERSION = '6.1.11'
 
     public static final int APP_COMPILE_SDK_VERSION = 21
-    public static final int APP_MIN_SDK_VERSION = 15
+    public static final int APP_MIN_SDK_VERSION = 19
     public static final int APP_TARGET_SDK_VERSION = 21
     public static final String APP_ANDROID_SUPPORT_VERSION = '21.0.0'
 
