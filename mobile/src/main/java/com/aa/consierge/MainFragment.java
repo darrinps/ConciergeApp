@@ -1,8 +1,8 @@
 package com.aa.consierge;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.aa.android.common.WearActivity;
+import com.aa.android.common.data.SharedQuestion;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wearable.DataApi;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Created by layne on 10/24/14.
@@ -21,7 +28,26 @@ public class MainFragment extends Fragment {
     private Button mSubmit;
     private TextView mAnswer;
 
+    private WearActivity mActivity;
+
     public MainFragment() {
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mActivity = (WearActivity) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException("activity must extend from WearActiviy");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivity = null;
     }
 
     @Override
@@ -36,12 +62,30 @@ public class MainFragment extends Fragment {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: send question to wearable
-                Log.d(TAG, "sending...");
                 Toast.makeText(getActivity(), "sending...", Toast.LENGTH_SHORT).show();
+                sendQuestion(new WeakReference<>(MainFragment.this), mQuestion.getText().toString());
             }
         });
 
         return rootView;
+    }
+
+    private static void sendQuestion(final WeakReference<MainFragment> fragmentRef, String question) {
+        WearActivity wearActivity = fragmentRef.get().mActivity;
+        if (wearActivity != null) {
+            SharedQuestion sharedQuestion = new SharedQuestion(question, null);
+            wearActivity.getWearManager()
+                    .putDataItem(sharedQuestion.asPutDataRequest())
+                    .setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
+                        @Override
+                        public void onResult(DataApi.DataItemResult dataItemResult) {
+                            MainFragment fragment = fragmentRef.get();
+                            WearActivity activity;
+                            if (fragment != null && (activity = fragment.mActivity) != null) {
+                                Toast.makeText(activity, "success", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
     }
 }

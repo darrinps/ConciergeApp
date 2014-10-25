@@ -1,15 +1,20 @@
 package com.aa.consierge;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.aa.android.common.WearActivity;
+import com.aa.android.common.data.SharedDataEvent;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.MessageEvent;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends WearActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
@@ -18,7 +23,6 @@ public class MainActivity extends Activity {
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,5 +44,15 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean handleMessageEvent(Context context, GoogleApiClient client, MessageEvent messageEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean handleDataEvent(Context context, GoogleApiClient client, SharedDataEvent dataEvent) {
+        return false;
     }
 }

@@ -74,4 +74,14 @@ public class SharedQuestion extends SharedData {
         dest.writeString(mText);
         dest.writeStringList(mAnswers);
     }
+
+    @NonNull
+    public String getText() {
+        return mText;
+    }
+
+    @NonNull
+    public List<String> getAnswers() {
+        return mAnswers;
+    }
 }

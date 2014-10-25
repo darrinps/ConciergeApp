@@ -11,16 +11,17 @@ package com.aa.android.common;
 public final class AAIntent {
     private static final String BASE = "com.aa.concierge.intent.";
 
-    private static final String ACTION         = BASE + "action.";
-    public static final  String ACTION_GET     = ACTION + "GET";
-    public static final  String ACTION_POST    = ACTION + "POST";
-    public static final  String ACTION_PUT     = ACTION + "PUT";
-    public static final  String ACTION_DELETE  = ACTION + "DELETE";
-    public static final  String ACTION_REFRESH = ACTION + "REFRESH";
-    public static final  String ACTION_UPDATE  = ACTION + "UPDATE";
-    public static final  String ACTION_DISMISS = ACTION + "DISMISS";
+    private static final String ACTION = BASE + "action.";
+    public static final String ACTION_GET = ACTION + "GET";
+    public static final String ACTION_POST = ACTION + "POST";
+    public static final String ACTION_PUT = ACTION + "PUT";
+    public static final String ACTION_DELETE = ACTION + "DELETE";
+    public static final String ACTION_REFRESH = ACTION + "REFRESH";
+    public static final String ACTION_UPDATE = ACTION + "UPDATE";
+    public static final String ACTION_DISMISS = ACTION + "DISMISS";
 
     private static final String EXTRA = BASE + "extra.";
+    public static final String EXTRA_QUESTION = EXTRA + "QUESTION";
 
     private AAIntent() {}
 }

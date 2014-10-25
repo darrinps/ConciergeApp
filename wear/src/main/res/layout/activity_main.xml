@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.wearable.view.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:padding="15dp">
@@ -13,6 +13,7 @@
         app:layout_box="all">
 
         <TextView
+            android:id="@+id/question_text"
             android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -20,17 +21,19 @@
             android:textColor="@color/black" />
 
         <ImageButton
+            android:id="@+id/yes_button"
             android:background="@null"
             android:layout_gravity="bottom|left"
             android:layout_height="50dp"
             android:layout_width="50dp"
-            android:src="@null" />
+            android:src="@drawable/circle_green" />
 
         <ImageButton
+            android:id="@+id/no_button"
             android:background="@null"
             android:layout_gravity="bottom|right"
             android:layout_height="50dp"
             android:layout_width="50dp"
-            android:src="@null" />
+            android:src="@drawable/circle_red" />
     </FrameLayout>
 </android.support.wearable.view.BoxInsetLayout>
