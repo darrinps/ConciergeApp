@@ -52,6 +52,8 @@ public class MainActivity extends WearActivity {
                             Log.i(TAG, "Found device: " + device.getAddress() + " name: " + device.getName());
 
                             SmsUtils.sendSMSMessage(limo.getNumber(), "I'm at the gate!", getApplicationContext());
+                            SmsUtils.sendSMSMessage(phil.getNumber(), "I'm at the gate Phil!", getApplicationContext());
+
                         }
                     }
 
