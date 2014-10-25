@@ -37,6 +37,8 @@ public class MainActivity extends Activity
 
         holder = new ContactHolder("Big Als Limo", "2145977609", bm);
         SmsUtils.addContact(holder);
+
+        SmsUtils.sendSMSMessage(holder.getNumber(), "TEST", getApplicationContext());
     }
 
 

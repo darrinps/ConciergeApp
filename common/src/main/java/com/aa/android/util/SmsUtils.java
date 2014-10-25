@@ -17,11 +17,15 @@ public class SmsUtils
 
     public SmsUtils()
     {
-        contacts = new LinkedList<ContactHolder>();
     }
 
     public static void addContact(ContactHolder contact)
     {
+        if(contacts == null)
+        {
+            contacts = new LinkedList<ContactHolder>();
+        }
+
         contacts.add(contact);
     }
 
@@ -30,7 +34,7 @@ public class SmsUtils
         return contacts;
     }
 
-    public void sendSMSMessage(final String phoneNo, final String message, Context optCtx)
+    public static void sendSMSMessage(final String phoneNo, final String message, Context optCtx)
     {
         Log.i(TAG, "Sending SMS");
 
