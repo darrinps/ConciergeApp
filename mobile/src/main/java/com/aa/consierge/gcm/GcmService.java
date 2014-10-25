@@ -6,7 +6,7 @@
  * Copyright (c) 2014 American Airlines. All rights reserved.
  */
 
-package com.aa.consierge;
+package com.aa.consierge.gcm;
 
 import android.app.Service;
 import android.content.Intent;
