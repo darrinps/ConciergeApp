@@ -46,6 +46,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".PreferencesActivity"
+            android:label="@string/app_name" />
+
         <!-- Receivers -->
         <receiver
             android:name=".gcm.GcmReceiver"

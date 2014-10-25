@@ -5,9 +5,12 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.aa.consierge.NotificationUtils;
+import com.aa.consierge.PreferencesActivity;
 import com.aa.consierge.R;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by layne on 10/25/14.
@@ -37,6 +40,7 @@ public class TaxiHandler implements GcmMessageHandler {
                 break;
             case ADM:
                 drawable = R.drawable.admiralsclub;
+                EventBus.getDefault().post(new PreferencesActivity.PreferencesEvent());
                 break;
             case DRINK:
                 drawable = R.drawable.titos_vodka;

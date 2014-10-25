@@ -21,7 +21,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageEvent;
 
 
-public class MainActivity extends WearActivity {
+public class MainActivity extends BaseActivity {
     private String[] iBeacons = {
             "F1:60:22:42:5A:69",
             "F9:48:81:1A:89:57",
