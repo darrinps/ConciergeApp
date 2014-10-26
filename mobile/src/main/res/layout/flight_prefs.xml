@@ -25,7 +25,7 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:paddingBottom="12dp"
-        android:text="Mimosa during boarding"
+        android:text="Vodka tonic during boarding"
         android:textSize="18sp"/>
 
     <TextView
