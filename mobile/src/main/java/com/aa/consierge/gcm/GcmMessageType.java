@@ -13,6 +13,7 @@ public enum GcmMessageType {
     TSA,
     ADM,
     DRINK,
+    MBP,
     UNKNOWN;
 
     public static GcmMessageType fromString(String string) {

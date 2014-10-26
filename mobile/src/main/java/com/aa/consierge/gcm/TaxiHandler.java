@@ -31,9 +31,12 @@ public class TaxiHandler implements GcmMessageHandler {
             String contentMessage,
             String contentJson) {
 
-        int drawable = R.drawable.taxi;
+        int drawable = R.drawable.concierge;
         switch (type) {
+            case MBP:
+                break;
             case TAXI:
+                drawable = R.drawable.taxi;
                 break;
             case TSA:
                 drawable = R.drawable.tsa_precheck;
